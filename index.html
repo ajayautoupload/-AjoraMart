@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Apna Mart — Big Version (Demo)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="blog.css">
+    <!-- Fonts & Icons -->
+</head>
+
+<body>
+
+    </head>
+
+    <body>
+
+        <!-- Navbar aapka yahan rahega -->
+        <nav>
+            <!-- apna navbar code yahan paste kijiye -->
+            <!-- Hidden Admin Panel -->
+            <div id="adminPanelPopup" class="admin-panel"
+                style="display:none; position:fixed; top:60px; right:20px; z-index:999; width:300px;">
+                <small style="color:var(--muted)">Add product to catalog</small>
+                <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+                    <input id="admName" placeholder="Name (ex: Apple - 1kg)" />
+                    <input id="admPrice" placeholder="Price (number)" />
+                    <input id="admImg" placeholder="Image URL" />
+                    <select id="admCat">
+                        <option value="fruits">Fruits</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="pulses">Pulses</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Home & Kitchen">Home & Kitchen</option>
+                        <option value="books">Books</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Toys">Toys</option>
+                        <option value="Mobile & Accessories">Mobile & Accessories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <button id="admAdd" class="btn btn-primary">Add Product</button>
+                </div>
+            </div>
+
+            <header class="topbar" role="banner" aria-label="Site header">
+                <div class="container hdr">
+                    <div class="brand">
+                        <div class="logo"><img src="benner/logo.png" alt=""></div>
+                        <div>
+                            <h1>AjoraMart</h1>
+                            <div style="font-size:12px;color:var(--muted)"></div>
+                        </div>
+                    </div>
+
+                    <div class="searchbar" role="search" aria-label="Product search">
+                        <input id="search" type="search" placeholder="Search products (eg. apple, milk, paneer)..."
+                            aria-label="Search products">
+                        <div class="suggest">
+                            <div class="search-sug" id="sugBox"></div>
+                        </div>
+                        <button id="searchBtn" class="icon-btn">Search</button>
+                    </div>
+
+                    <div class="hdr-actions">
+                        <button id="openAdmin" class="icon-btn" title="Admin (local only)"><i class="fa fa-tools"></i>
+                            Admin</button>
+
+                        <button id="openWishlist" class="icon-btn" title="Wishlist"><i class="fa fa-heart"></i><span
+                                id="wishCount"></span></button>
+
+                        <div class="cart-floating">
+                            <button id="openCart" class="icon-btn" aria-haspopup="dialog" aria-controls="cartModal"><i
+                                    class="fa fa-shopping-cart">cart</i><span id="cartCount"></span></button>
+                        </div>
+                        <button id="openAdmin" class="icon-btn" title="Admin Panel"><i class="fa fa-tools"></i>
+                            Admin</button>
+
+                    </div>
+                </div>
+            </header>
+        </nav>
+
+        <!-- Slider wrapper ke andar centered -->
+        <div class="slider-wrapper">
+            <div class="frame" id="frame">
+                <div class="badge" id="badge">BIG SALE • FREE</div>
+                <div class="slider">
+                    <div class="slide" id="slide">
+                        <img src="benner/big sale.png" alt="Product 1">
+                        <img src="benner/dewali sale.webp" alt="Product 2">
+                        <img src="benner/diwali-festive-season-sale-banner-260nw-2049931676.webp" alt="Product 3">
+                        <img src="benner/download (1).jpeg" alt="Product 4">
+                    </div>
+                </div>
+                <div class="caption" id="caption">Offer live — Click to explore</div>
+            </div>
+        </div>
+
+        <script>
+
+        </script>
+
+        <!-- Main -->
+        <main>
+            <!-- Sidebar -->
+            <aside class="aside" aria-label="Sidebar categories">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                    <strong>Categories</strong>
+                    <button id="resetFilters" class="smallbtn">Reset</button>
+                </div>
+
+                <div id="categoryList"></div>
+
+                <hr style="margin:12px 0">
+                <div style="margin-top:8px">
+                    <strong>Sort / Price</strong>
+                    <div style="display:flex;gap:8px;margin-top:8px">
+                        <select id="sort" class="select" aria-label="Sort products">
+                            <option value="popular">Most popular</option>
+                            <option value="price-asc">Price: Low → High</option>
+                            <option value="price-desc">Price: High → Low</option>
+                            <option value="name-asc">Name A → Z</option>
+                        </select>
+                        <button id="applySort" class="smallbtn">Apply</button>
+                    </div>
+                </div>
+
+                <hr style="margin:12px 0">
+                <div style="margin-top:8px">
+                    <!-- <strong>Admin (local)</strong> -->
+                    <!-- <div class="admin-panel" style="margin-top:8px"> -->
+                    <!-- <small style="color:var(--muted)">Add product to local catalog (saved to localStorage)</small>
+                    <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+                        <input id="admName" placeholder="Name (ex: Apple - 1kg)" />
+                        <input id="admPrice" placeholder="Price (number)" />
+                        <input id="admImg" placeholder="Image URL" />
+                        <select id="admCat">
+                            <option value="fruits">Fruits</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="dairy">Dairy</option>
+                            <option value="pulses">Pulses</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Home & Kitchen">Home & Kitchen</option>
+                            <option value="books">books</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Toys">Toys</option>
+                            <option value="Mobile & Accessories">Mobile & Accessories</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="other">Other</option>
+
+                        </select>
+                        <button id="admAdd" class="btn btn-primary">Add Product</button> -->
+                </div>
+                </div>
+                </div>
+            </aside>
+            <!-- Products area -->
+            <section>
+                <div class="controls">
+                    <div class="controls-left">
+                        <div style="font-weight:700">Showing <span id="resultCount">0</span> products</div>
+                    </div>
+                    <div>
+                        <label style="color:var(--muted);font-size:13px">Per page:
+                            <select id="perPage" class="select">
+                                <!-- <option value="8">8</option>
+                            <option value="12" selected>12</option> -->
+                                <option value="10000">100</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="productGrid" class="grid" aria-live="polite"></div>
+
+                <div class="pagination" id="pagination"></div>
+            </section>
+        </main>
+
+        <!-- Cart Modal -->
+        <div id="cartModal" class="cart-modal" style="display:none;position:fixed;right:18px;bottom:18px;z-index:95">
+            <div class="cart-header">
+                <strong>Cart</strong>
+                <div>
+                    <button id="closeCart" class="btn btn-ghost">Close</button>
+                </div>
+            </div>
+            <div class="cart-body" id="cartBody"></div>
+            <div class="cart-footer" id="cartFooter"></div>
+        </div>
+
+        <!-- Wishlist Modal (simple) -->
+        <div id="wishModal" style="position:fixed;left:18px;bottom:18px;z-index:95;display:none">
+            <div class="cart-modal" style="width:360px;max-width:95vw">
+                <div class="cart-header"><strong>Wishlist</strong><button id="closeWish"
+                        class="btn btn-ghost">Close</button></div>
+                <div style="padding:12px" id="wishBody"></div>
+            </div>
+        </div>
+
+        <!-- Product Detail Modal -->
+        <div id="overlay" class="overlay" role="dialog" aria-modal="true">
+            <div class="modal" id="productModal" role="document">
+                <div class="modal-left" id="modalLeft"></div>
+                <div class="modal-right" id="modalRight"></div>
+            </div>
+        </div>
+
+        <!-- Checkout form (simple page) -->
+        <div id="checkoutOverlay" class="overlay" style="display:none;align-items:flex-start;padding-top:40px">
+            <div class="modal" style="flex-direction:column;width:760px;max-width:96vw">
+                <div
+                    style="padding:14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,0.06)">
+                    <strong>Checkout</strong>
+                    <button id="closeCheckout" class="btn btn-ghost">Close</button>
+                </div>
+                <div style="display:flex;gap:12px;padding:14px">
+                    <form id="checkoutForm" style="flex:1;display:flex;flex-direction:column;gap:8px">
+                        <input id="cName" placeholder="Full name" required />
+                        <input id="cPhone" placeholder="Phone number" required />
+                        <input id="cAddress" placeholder="Full delivery address" required />
+                        <div style="display:flex;gap:8px">
+                            <input id="cCity" placeholder="City" required />
+                            <input id="cPincode" placeholder="Pincode" required />
+                        </div>
+                        <div style="display:flex;gap:8px;align-items:center">
+                            <label style="font-size:14px">Payment</label>
+                            <select id="cPayment" class="select">
+                                <option>Cash on delivery (Demo)</option>
+                                <option>UPI (Demo)</option>
+                            </select>
+                        </div>
+                        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+                            <button type="submit" class="btn btn-primary">Place Order</button>
+                            <button type="button" id="cancelCheckout" class="btn btn-ghost">Cancel</button>
+                        </div>
+                    </form>
+
+                    <div style="width:320px">
+                        <strong>Order Summary</strong>
+                        <div id="checkoutSummary" style="margin-top:8px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>© 2025 AjoraMart. For real orders integrate backend & payment API.</footer>
+
+       
+0303333333333333333333333333
+     <script src="blog.js"></script>
+    </body>
+
+</html>
